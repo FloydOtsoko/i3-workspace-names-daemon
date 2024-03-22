@@ -1,0 +1,34 @@
+name: Build Deb Pack
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Generate Source Tarball
+        run: tar --exclude=.git --exclude=.github --exclude=tests -czvf "i3-workspace-names-daemon_0.15.0.orig.tar.gz" i3-workspace-names-daemon
+        working-directory: /home/runner/work/i3-workspace-names-daemon
+
+      - name: Install Build Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y dpkg-dev devscripts debhelper-compat dh-python python3-setuptools python3-all
+
+      - name: Build Debian Package
+        run: debuild -us -uc 
+
+      - name: Release the Package
+        uses: softprops/action-gh-release@v1
+        with:
+          name: i3-workspace-names-daemon
+          files: /home/runner/work/i3-workspace-names-daemon/*.deb
+          token: ${{ secrets.release }}
+

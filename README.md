@@ -12,18 +12,23 @@ update i3-bar workspace names to look something like this
 
 <img src="https://raw.githubusercontent.com/cboddy/_vim_gifs/master/i3-bar-with-icons.png"></img>
 
-### install
+## install
 
-#### Archlinux
+### Archlinux
 
 There is this [AUR package](https://aur.archlinux.org/packages/i3-workspace-names-daemon-git)
 PKGBUILD is [here](https://github.com/i3-workspace-names-daemon/AUR)
 
-#### Debian & others
+### Debian & others
 
-- Packaging contibutions are welcome
+Download the .deb package from the latest release, open Download folder in shell and install
+```bash
+sudo apt install ./i3-workspace-names-daemon_0.15.0-1_amd64.deb
+```
 
-Otherwise, install manually
+To use font awesome icons follow the instructions below
+
+*The version in the package name will not change for new releases until I find a way to integrate the tag into to name of the .deb file without crashing my workflow - input welcome ;)*
 
 #### pip
 
@@ -60,12 +65,12 @@ For Debian/Ubuntu et al.
 ```
 sudo apt install fonts-font-awesome
 ```
-_Note that the Debian package is usually behind the current version of Font Awesome. If you want to use a more up to date version, [download the free Package](https://fontawesome.com/download) and install manually (Tutorial for Ubuntu 22.04 [here](https://linuxconfig.org/how-to-install-fonts-on-ubuntu-22-04-jammy-jellyfish-linux))._
+_Note that the Font Awesome Debian package is usually behind the current version of Font Awesome. If you want to use a more up to date version, [download the free Package](https://fontawesome.com/download) and install manually (Tutorial for Ubuntu 22.04 [here](https://linuxconfig.org/how-to-install-fonts-on-ubuntu-22-04-jammy-jellyfish-linux))._
 
 **NB: if the glyphs are not rendering make sure the font is installed.**
 
 
-### i3 config
+## i3 config
 
 Add the following line to your ``~/.i3/config``.
 
@@ -155,6 +160,10 @@ To hide all unknown applications, use the `--ignore-unknown` or `-i` option.
 
 The window delimiter can be specified with `-d` or `--delimiter` parameter by default it is `|`.
 
+### config location
+
+The location of the config file can be specified with `-config-path /path/to/your/app-icons.json`
+
 ### picking icons 
 
 The easiest way to pick an icon is to search for one in the [gallery](https://origin.fontawesome.com/icons?d=gallery). **NB: the "pro" icons are not available in the debian package.**
@@ -232,12 +241,14 @@ The project name can be matched by the capturing group in this regex: `".*\\[(.+
 Only the project name is shown as a result of the `to` property.
 
 ```json
-"emacs": {
-  "transform_title": {
-    "from": ".*\\[(.+?)\\].*",
-    "to": "\\1",
-    "compress": true
-  },
-  "icon": "<span font_desc=\"file-icons\">\ue926</span>"
+{
+  "emacs": {
+    "transform_title": {
+      "from": ".*\\[(.+?)\\].*",
+      "to": "\\1",
+      "compress": true
+    },
+    "icon": "<span font_desc=\"file-icons\">\ue926</span>"
+  }
 }
 ```
