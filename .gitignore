@@ -108,3 +108,9 @@ venv.bak/
 flycheck_*
 \#*\#
 .\#*
+
+# Debian pkg / pybuild
+.pybuild
+
+# JetBrains
+.idea
