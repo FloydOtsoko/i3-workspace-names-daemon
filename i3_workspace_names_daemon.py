@@ -11,7 +11,6 @@ from fa_icons import icons as fa_icons
 
 I3_CONFIG_PATHS = tuple(
     os.path.expanduser(path)
-<<<<<<< HEAD
     for path in (
         "~/.i3",
         "~/.config/i3",
@@ -19,9 +18,6 @@ I3_CONFIG_PATHS = tuple(
         "~/.config/regolith2/i3",
         "~/.config/regolith3/i3",
     )
-=======
-    for path in ("~/.i3", "~/.config/i3", "~/.config/i3-regolith", "~/.config/regolith2/i3", "~/.config/regolith3/i3")
->>>>>>> 9f134d4 (Regolith3 support)
 )
 
 DEFAULT_APP_ICON_CONFIG = {
