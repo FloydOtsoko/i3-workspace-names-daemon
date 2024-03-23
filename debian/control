@@ -1,7 +1,7 @@
 Source: i3-workspace-names-daemon
 Section: python
 Priority: optional
-Maintainer: Otsoko <55394045+FloydOtsoko@users.noreply.github.com>
+Maintainer: Floyd Otsoko <floydotsoko@gmx.net>
 Build-Depends: debhelper-compat (= 13), dh-python, python3-setuptools, python3-all
 Standards-Version: 4.6.0
 Homepage: https://github.com/i3-workspace-names-daemon/i3-workspace-names-daemon
