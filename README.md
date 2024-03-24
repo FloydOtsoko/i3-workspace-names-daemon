@@ -1,4 +1,5 @@
 [![testsuite](https://github.com/i3-workspace-names-daemon/i3-workspace-names-daemon/actions/workflows/pythonapp.yml/badge.svg)](https://github.com/i3-workspace-names-daemon/i3-workspace-names-daemon/actions/workflows/pythonapp.yml)
+[![Build Deb Pack](https://github.com/FloydOtsoko/i3-workspace-names-daemon/actions/workflows/debpack.yml/badge.svg?branch=master)](https://github.com/FloydOtsoko/i3-workspace-names-daemon/actions/workflows/debpack.yml)
 [![codecov.io](https://codecov.io/github/castixgithub/i3-workspace-names-daemon/coverage.svg?branch=master)](https://codecov.io/github/castixgithub/i3-workspace-names-daemon?branch=master)
 
 # i3-workspace-names-daemon
@@ -21,14 +22,18 @@ PKGBUILD is [here](https://github.com/i3-workspace-names-daemon/AUR)
 
 ### Debian & others
 
-Download the .deb package from the latest release, open Download folder in shell and install
+Download the package and checksum from the [latest release](https://github.com/CastixGitHub/i3-workspace-names-daemon/releases/latest), open Download folder in shell
 ```bash
-sudo apt install ./i3-workspace-names-daemon_0.15.0-1_amd64.deb
+# check integrity of file
+md5sum -c ./i3-workspace-names-daemon_0.15.0-1_amd64.md5
+
+# install package
+sudo apt-get install ./i3-workspace-names-daemon_0.15.0-1_amd64.deb
 ```
 
 To use font awesome icons follow the instructions below
 
-*The version in the package name will not change for new releases until I find a way to integrate the tag into to name of the .deb file without crashing my workflow - input welcome ;)*
+*[Further documentation on this topic](documentation/debian_package.md)*
 
 #### pip
 
@@ -65,7 +70,7 @@ For Debian/Ubuntu et al.
 ```
 sudo apt install fonts-font-awesome
 ```
-_Note that the Font Awesome Debian package is usually behind the current version of Font Awesome. If you want to use a more up to date version, [download the free Package](https://fontawesome.com/download) and install manually (Tutorial for Ubuntu 22.04 [here](https://linuxconfig.org/how-to-install-fonts-on-ubuntu-22-04-jammy-jellyfish-linux))._
+_Note that the Font Awesome Debian package is providing an older version of Font Awesome. If you want to use a more up to date version, [download the free Package](https://fontawesome.com/download) and install manually (Tutorial for Ubuntu 22.04 [here](https://linuxconfig.org/how-to-install-fonts-on-ubuntu-22-04-jammy-jellyfish-linux))._
 
 **NB: if the glyphs are not rendering make sure the font is installed.**
 
@@ -99,7 +104,8 @@ bindsym $mod+Shift+1 move container to workspace number 1
 
 
 ### icons config
-Configure what icons to show for what application-windows in the file  ``~/.i3/app-icons.json`` or ``~/.config/i3/app-icons.json`` (in JSON format). For example:
+Configure what icons to show for what application-windows in the file  ``app-icons.json`` (in JSON format).
+For example:
 
 ```
 chris@vulcan: ~$ cat ~/.i3/app-icons.json
@@ -117,6 +123,14 @@ chris@vulcan: ~$ cat ~/.i3/app-icons.json
     "signal": "comment",
     "_no_match": "question"
 }
+```
+The file will scan those directories for configuration files:
+```
+"~/.i3",
+"~/.config/i3",
+"~/.config/i3-regolith",
+"~/.config/regolith2/i3",
+"~/.config/regolith3/i3",
 ```
 
 NB: to validate your config file is formatted correctly run this command and check it doesn't  report an error

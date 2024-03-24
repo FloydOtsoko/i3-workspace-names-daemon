@@ -1,9 +1,9 @@
-name: Build Deb Pack
+name: Build Deb Pack for development tests
 
 on:
   push:
-    tags:
-      - 'v*'
+    branches:
+        'deb-pack'
 
 jobs:
   build:
@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install Build Dependencies
         run: |
@@ -23,16 +23,14 @@ jobs:
 
       - name: Generate MD5 Checksum file
         run: |
-          cd /home/runner/work/i3-workspace-names-daemon/
+          cd ${GITHUB_WORKSPACE}/..
           newest_deb=$(ls -t *.deb | head -n 1)
           md5sum "$newest_deb" > "${newest_deb%.deb}.md5"
 
-      - name: Release the Package
-        uses: softprops/action-gh-release@v1
+      - name: Upload Package
+        uses: actions/upload-artifact@v2
         with:
           name: i3-workspace-names-daemon
-          files:  |
-            /home/runner/work/i3-workspace-names-daemon/*.deb
-            /home/runner/work/i3-workspace-names-daemon/*.md5
-          token: ${{ secrets.release }}
-
+          path: |
+            ${GITHUB_WORKSPACE}/../*.deb
+            ${GITHUB_WORKSPACE}/../*.md5
