@@ -1,0 +1,3 @@
+v0.15.2
+
+- improve automated debian packaging
