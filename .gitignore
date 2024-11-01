@@ -111,3 +111,4 @@ flycheck_*
 
 # vim
 *.swp
+.pybuild
