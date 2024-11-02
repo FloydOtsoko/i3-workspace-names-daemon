@@ -112,3 +112,4 @@ flycheck_*
 # vim
 *.swp
 .pybuild
+.idea
